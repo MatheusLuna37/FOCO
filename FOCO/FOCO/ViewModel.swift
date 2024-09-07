@@ -6,3 +6,8 @@
 //
 
 import Foundation
+import SwiftUI
+
+class GlobalSettings: ObservableObject {
+    @Published public var colorScheme: ColorScheme = .dark
+}

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showingMenu: Bool = false
+    //@StateObject var settings = GlobalSettings()
     var body: some View {
         NavigationStack {
             ZStack {
@@ -42,6 +43,7 @@ struct ContentView: View {
                 }
             }
         }
+        //.colorScheme(appColorScheme.color)
     }
 }
 

@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct FOCOApp: App {
+    //var settings = GlobalSettings()
     var body: some Scene {
         WindowGroup {
             ContentView()
+                //.environmentObject(settings)
         }
     }
 }

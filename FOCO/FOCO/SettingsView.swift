@@ -8,14 +8,16 @@
 import SwiftUI
 
 struct SettingsView: View {
-    private var funcs = ["MODO", "FUNÇÃO3", "FUNÇÃO4", "FUNÇÃO5"]
-    @State private var dark: Bool = true
-    @State private var opct: Double = 1
+    @State var colorScheme: ColorScheme = .dark
+    @State var isDark: Bool = true
     var body: some View {
         ZStack {
-            Color(dark ? .orange : .white)
+            Color(colorScheme == .dark ? .black : .white)
                 .ignoresSafeArea()
             ScrollView {
+                List(content: {
+                    
+                })
                 VStack {
                     Text("CONFIGURAÇÕES")
                         .font(.system(size: 35))
@@ -55,7 +57,27 @@ struct SettingsView: View {
                                 .font(.title)
                                 .fontWeight(.bold)
                             Spacer()
-                            Button(action: {
+                            Toggle("", isOn: $isDark)
+                                .onAppear(){
+                                    switch colorScheme {
+                                    case .light:
+                                        isDark = false
+                                    case .dark:
+                                        isDark = true
+                                    @unknown default:
+                                        fatalError()
+                                    }
+                                }
+                                .onChange(of: isDark, {
+                                    switch isDark {
+                                    case true:
+                                        colorScheme = .dark
+                                    case false:
+                                        colorScheme = .light
+                                    }
+                                    print(colorScheme)
+                                })
+                            /*Button(action: {
                                 dark.toggle()
                                 withAnimation(.easeInOut(duration: 10)) {}
                             }, label: {
@@ -81,12 +103,14 @@ struct SettingsView: View {
                                 }
                                 .frame(width: 120, height: 50)
                             })
+                             */
                         }
-                        .frame(width: 360, height: 70)
+                        .frame(width: 320, height: 70)
                     }
                 }
             }
         }
+        .colorScheme(colorScheme)
     }
 }
 

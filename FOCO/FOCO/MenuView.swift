@@ -8,19 +8,25 @@
 import SwiftUI
 
 struct MenuView: View {
+    @StateObject var settings = GlobalSettings()
     var body: some View {
-        NavigationLink(destination: AgendaView(), label: {
-            Text("Agenda")
-        })
-        NavigationLink(destination: RankingView(), label: {
-            Text("Ranking")
-        })
-        NavigationLink(destination: StatsView(), label: {
-            Text("Estatísticas")
-        })
-        NavigationLink(destination: SettingsView(), label: {
-            Text("Configurações")
-        })
+        NavigationStack {
+            VStack {
+                NavigationLink(destination: AgendaView(), label: {
+                    Text("Agenda")
+                })
+                NavigationLink(destination: RankingView(), label: {
+                    Text("Ranking")
+                })
+                NavigationLink(destination: StatsView(), label: {
+                    Text("Estatísticas")
+                })
+                NavigationLink(destination: SettingsView()){
+                    Text("Configurações")
+                }
+            }
+        }
+        .colorScheme(settings.colorScheme)
     }
 }
 
